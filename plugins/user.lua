@@ -1,12 +1,28 @@
 return {
-  -- You can also add new plugins here as well:
-  -- Add plugins, the lazy syntax
-  -- "andweeb/presence.nvim",
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   event = "BufRead",
-  --   config = function()
-  --     require("lsp_signature").setup()
-  --   end,
-  -- },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
+    },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          undo = {
+            -- telescope-undo.nvim config, see below
+          },
+        },
+      })
+      require("telescope").load_extension("undo")
+      -- optional: vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
+    end,
+  },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false
+  },
+  {
+    "Verf/deepwhite.nvim",
+    lazy = false
+  }
 }

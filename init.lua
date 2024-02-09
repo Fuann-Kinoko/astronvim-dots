@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  -- colorscheme = "astrodark",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -69,17 +69,23 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
-    -- Set up custom filetypes
-    -- vim.filetype.add {
-    --   extension = {
-    --     foo = "fooscript",
-    --   },
-    --   filename = {
-    --     ["Foofile"] = "fooscript",
-    --   },
-    --   pattern = {
-    --     ["~/%.config/foo/.*"] = "fooscript",
-    --   },
-    -- }
+    -- ===============================neotree disable hiiden============================
+    require('neo-tree').setup {
+      filesystem = {
+        filtered_items = {
+          -- visible = true,
+          hide_hidden = false,
+          -- hide_dotfiles = false,
+          -- hide_gitignored = true,
+        },
+      }
+    }
+    -- ===============================colorscheme=======================================
+      if vim.o.background == "dark"
+      then
+        vim.cmd("colorscheme gruvbox-material")
+      else
+        vim.cmd("colorscheme astrolight")
+      end
   end,
 }
